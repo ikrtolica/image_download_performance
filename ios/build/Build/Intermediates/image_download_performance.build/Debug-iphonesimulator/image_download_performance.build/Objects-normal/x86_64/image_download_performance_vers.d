@@ -1,0 +1,2 @@
+dependencies: \
+  /Users/igorkrtolica/Development/image_download_performance/ios/build/Build/Intermediates/image_download_performance.build/Debug-iphonesimulator/image_download_performance.build/DerivedSources/image_download_performance_vers.c
