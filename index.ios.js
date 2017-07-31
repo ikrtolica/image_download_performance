@@ -14,7 +14,8 @@ import {
   Dimensions
 } from 'react-native';
 import { ImageCache, CachedImage } from 'react-native-img-cache';
-import imagesList from './imagesList.json';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import imagesList from './imageTestList.json';
 
 const IMAGE_URL = "https://static.blinkinc.com";
 
@@ -34,23 +35,32 @@ export default class image_download_performance extends Component {
     //console.log(`${item.csw} : ${item.landscape ? 'landscape' : 'portrait'}`);
 
     var imageStyle;
-    if(item.landscape) {
-      imageStyle = { alignItems: "center", justifyContent: "center", transform: [{ rotate: '90deg'}], width: 341, height: 512 };
+    if(item.landscape === true) {
+      imageStyle = { transform: [{ rotate: "90deg" }], width: 512, height: 342 };
     } else {
-      imageStyle = { alignItems: "center", justifyContent: "center", width: 341, height: 512 };
+      imageStyle = { width: 342, height: 512 };
     }
 
     return (
-      <CachedImage
-        style={ imageStyle }
-        source={{uri: `${IMAGE_URL}/${item.csw}`}}
-      />
+      <View style={{flexDirection: "column" }}>
+        <CachedImage
+          style={ imageStyle }
+          source={{uri: `${IMAGE_URL}/${item.csw}`}}
+        />
+        <View
+          style={{width: "100%", flexDirection: "row",
+          padding: 2}}
+        >
+          <Icon name="heart-o" size={25} color="#484955" />
+          <Icon name="trash-o" size={25} color="#484955" />
+        </View>
+      </View>
     );
   }
 
   render() {
     return (
-      <View>
+      <View style={{ flex: 1 }}>
         <FlatList
           data={this.state.images}
           initialNumToRender={1}
@@ -64,17 +74,6 @@ export default class image_download_performance extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1 ,
-  },
-  listBox: {
-    alignItems: 'stretch',
-  },
-  imageDisplay: {
-    flex: 1,
-  },
-  imageContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'stretch',
   },
 });
 
