@@ -44,6 +44,8 @@ export default class image_download_performance extends Component {
           data={this.state.images}
           initialNumToRender={3}
           renderItem={this.renderItem}
+          renderSeparator={this.renderSeparator}
+          ItemSeparatorComponent={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
         />
       </View>
     );
@@ -54,6 +56,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: 25,
+  },
+  separator: {
+    flex: 1,
+    height: StyleSheet.hairlineWidth,
+    backgroundColor: '#8E8E8E',
   },
 });
 
