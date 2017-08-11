@@ -21,7 +21,6 @@ import {
 import { ImageCache, CachedImage } from 'react-native-img-cache';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const IMAGE_URL = "https://static.blinkinc.com";
 const BASE_IMAGE_URL = "https://res.cloudinary.com"
 const CLOUDINARY_REMOTE_FOLDER = "blink_remote";
 const CLOUDINARY_USER_ID = "dkw13vlcj";
