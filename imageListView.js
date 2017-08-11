@@ -48,11 +48,8 @@ export default class ImageListView extends PureComponent {
     console.log("Image loaded.");
   }
 
-  getRequestUri() {
-    const { height, width } = Dimensions.get('window');
-    console.log("height: " + height + " width: " + width);
+  getCloudinaryRequestUri(height, width) {
     const pixelWidth = PixelRatio.getPixelSizeForLayoutSize(width);
-    console.log("pixelWidth: " + pixelWidth);
     const dimensionCommand = this.props.landscape ? `h_${pixelWidth}` : `w_${pixelWidth}`;
     const commandString = `c_scale,${dimensionCommand}`;
     return (`${BASE_IMAGE_URL}/${CLOUDINARY_USER_ID}/image/upload/${commandString}/${CLOUDINARY_REMOTE_FOLDER}/${this.props.cf}`);
@@ -73,7 +70,7 @@ export default class ImageListView extends PureComponent {
         <ScrollView
           contentContainerStyle={{ flexDirection: "column", alignItems: "center", width: "100%", height: width * FULL_IMAGE_ASPECT_RATIO }}
           centerContent={true}
-          maximumZoomScale={3}
+          maximumZoomScale={2}
           minimumZoomScale={1}
           showsHorizontalScrollIndicator={false}
           showsVerticalScrollIndicator={false}
@@ -81,7 +78,7 @@ export default class ImageListView extends PureComponent {
           <TouchableWithoutFeedback onPress={function() {}}>
             <CachedImage
               style={ imageStyle }
-              source={ { uri: this.getRequestUri() } }
+              source={ { uri: this.getCloudinaryRequestUri(height, width) } }
               onLoadStart={ this.onLoadStart }
               onLoadEnd={ this.onLoadEnd }
             />
