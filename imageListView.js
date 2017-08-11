@@ -14,7 +14,9 @@ import {
   Text,
   View,
   Dimensions,
-  PixelRatio
+  PixelRatio,
+  ScrollView,
+  TouchableWithoutFeedback
 } from 'react-native';
 import { ImageCache, CachedImage } from 'react-native-img-cache';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -68,16 +70,23 @@ export default class ImageListView extends PureComponent {
 
     return (
       <View style={{flexDirection: "column" }}>
-        <View
-          style={{ flexDirection: "column", alignItems: "center", width: "100%", height: width * FULL_IMAGE_ASPECT_RATIO }}
+        <ScrollView
+          contentContainerStyle={{ flexDirection: "column", alignItems: "center", width: "100%", height: width * FULL_IMAGE_ASPECT_RATIO }}
+          centerContent={true}
+          maximumZoomScale={3}
+          minimumZoomScale={1}
+          showsHorizontalScrollIndicator={false}
+          showsVerticalScrollIndicator={false}
         >
-          <CachedImage
-            style={ imageStyle }
-            source={ { uri: this.getRequestUri() } }
-            onLoadStart={ this.onLoadStart }
-            onLoadEnd={ this.onLoadEnd }
-          />
-        </View>
+          <TouchableWithoutFeedback onPress={function() {}}>
+            <CachedImage
+              style={ imageStyle }
+              source={ { uri: this.getRequestUri() } }
+              onLoadStart={ this.onLoadStart }
+              onLoadEnd={ this.onLoadEnd }
+            />
+          </TouchableWithoutFeedback>
+        </ScrollView>
         <View
           style={{ flexDirection: "row", margin: 5 }}
         >
