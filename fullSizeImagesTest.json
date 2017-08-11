@@ -1,4 +1,10 @@
 [
-  { "cf": "nznornzmozh4hb0i9cdftq.jpg", "landscape": false },
-  { "cf": "liaxkkcgyfsfeiibdfkpa.jpg", "landscape": true }
+  { "cf": "nznornzmozh4hb0i9cdftq.jpg",
+    "landscape": false,
+    "liked": false,
+    "date": "" },
+  { "cf": "liaxkkcgyfsfeiibdfkpa.jpg",
+    "landscape": true,
+    "liked": true,
+    "date": "" }
 ]

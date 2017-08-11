@@ -4,6 +4,8 @@
   mode.  Will not respond to device rotation as it only gets the device dims
   at render time.
 
+  Provides zoom using scroll view.
+
 */
 
 import React, { PureComponent } from 'react';
