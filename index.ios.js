@@ -37,6 +37,8 @@ export default class image_download_performance extends Component {
     );
   }
 
+  keyExtractor = (item, index) => item.id;
+
   render() {
     return (
       <View style={ styles.container }>
@@ -45,6 +47,7 @@ export default class image_download_performance extends Component {
           initialNumToRender={3}
           renderItem={this.renderItem}
           renderSeparator={this.renderSeparator}
+          keyExtractor={this.keyExtractor}
           ItemSeparatorComponent={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
         />
       </View>

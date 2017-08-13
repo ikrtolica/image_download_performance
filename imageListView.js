@@ -44,7 +44,7 @@ export default class ImageListView extends PureComponent {
   }
 
   onLoadEnd = () => {
-    console.log("Image loaded.");
+    console.log("Image loaded." );
   }
 
   getCloudinaryRequestUri(height, width) {
