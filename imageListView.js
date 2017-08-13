@@ -83,6 +83,7 @@ export default class ImageListView extends PureComponent {
             />
           </TouchableWithoutFeedback>
         </ScrollView>
+        <View style={styles.separator} />
         <View
           style={{ flexDirection: "row", margin: 5 }}
         >
@@ -93,3 +94,11 @@ export default class ImageListView extends PureComponent {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  separator: {
+    flex: 1,
+    height: StyleSheet.hairlineWidth,
+    backgroundColor: '#8E8E8E',
+  },
+});
