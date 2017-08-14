@@ -55,9 +55,9 @@ export default class ImageListView extends PureComponent {
   }
 
   showMoreActionSheet() {
-    const options = ['Share', 'Delete', 'Cancel'];
-    const destructiveButtonIndex = 1;
-    const cancelButtonIndex = 2;
+    const options = ['Download', 'Share', 'Delete', 'Cancel'];
+    const destructiveButtonIndex = 2;
+    const cancelButtonIndex = 3;
 
     ActionSheetIOS.showActionSheetWithOptions(
       { options,
