@@ -31,7 +31,6 @@ export default class image_download_performance extends Component {
   }
 
   renderItem = ({item}) => {
-    //console.log(`${item.csw} : ${item.landscape ? 'landscape' : 'portrait'}`);
     return (
       <ImageListView {...item} />
     );

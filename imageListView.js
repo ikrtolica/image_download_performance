@@ -16,7 +16,9 @@ import {
   Dimensions,
   PixelRatio,
   ScrollView,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
+  TouchableHighlight,
+  ActionSheetIOS
 } from 'react-native';
 import { ImageCache, CachedImage } from 'react-native-img-cache';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -24,7 +26,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 const BASE_IMAGE_URL = "https://res.cloudinary.com"
 const CLOUDINARY_REMOTE_FOLDER = "blink_remote";
 const CLOUDINARY_USER_ID = "dkw13vlcj";
-const FULL_IMAGE_ASPECT_RATIO = 1.5;
+const FULL_IMAGE_ASPECT_RATIO = 1.5;  // This is the aspect ratio of Canon pro camera images
 
 export default class ImageListView extends PureComponent {
 
@@ -33,6 +35,7 @@ export default class ImageListView extends PureComponent {
   }
 
   componentDidMount() {
+    console.log("Mounted image component.");
   }
 
   componentWillUnmount(){
@@ -45,6 +48,23 @@ export default class ImageListView extends PureComponent {
 
   onLoadEnd = () => {
     console.log("Image loaded." );
+  }
+
+  onPressMore = () => {
+
+  }
+
+  showMoreActionSheet() {
+    const options = ['Share', 'Delete', 'Cancel'];
+    const destructiveButtonIndex = 1;
+    const cancelButtonIndex = 2;
+
+    ActionSheetIOS.showActionSheetWithOptions(
+      { options,
+        cancelButtonIndex,
+        destructiveButtonIndex,
+      },
+      buttonIndex => {});
   }
 
   getCloudinaryRequestUri(height, width) {
@@ -84,11 +104,17 @@ export default class ImageListView extends PureComponent {
           </TouchableWithoutFeedback>
         </ScrollView>
         <View style={styles.separator} />
-        <View
-          style={{ flexDirection: "row", margin: 5 }}
-        >
-          <Icon style={{ margin: 5 }} name="heart-o" size={25} color="#484955" />
-          <Icon style={{ margin: 5 }} name="trash-o" size={25} color="#484955" />
+        <View style={{ flex: 1, flexDirection: "row", margin: 5 }}>
+          <View style={{ flex: 1, flexDirection: "row"}}>
+            <Icon style={{ margin: 5 }} name="heart-o" size={25} color="#484955" />
+            <Icon style={{ margin: 5, marginLeft: 15 }} name="comment-o" size={25} color="#484955" />
+          </View>
+          <View style={{ flex: 2 }} />
+          <View style={{ flex: 1, flexDirection: "row", justifyContent: "flex-end"}}>
+            <TouchableHighlight onPress={this.onPressMore}>
+              <Icon style={{ margin: 5 }} name="ellipsis-h" size={25} color="#484955" onPress={this.showMoreActionSheet} />
+            </TouchableHighlight>
+          </View>
         </View>
       </View>
     );
