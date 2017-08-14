@@ -18,7 +18,8 @@ import {
   ScrollView,
   TouchableWithoutFeedback,
   TouchableHighlight,
-  ActionSheetIOS
+  ActionSheetIOS,
+  CameraRoll
 } from 'react-native';
 import { ImageCache, CachedImage } from 'react-native-img-cache';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -54,17 +55,29 @@ export default class ImageListView extends PureComponent {
 
   }
 
-  showMoreActionSheet() {
+  showMoreActionSheet = () => {
     const options = ['Download', 'Share', 'Delete', 'Cancel'];
     const destructiveButtonIndex = 2;
     const cancelButtonIndex = 3;
 
+    // TODO: This only works in IOS - Android uses a different setup, need to check for that here
+    const that = this;
     ActionSheetIOS.showActionSheetWithOptions(
       { options,
         cancelButtonIndex,
         destructiveButtonIndex,
       },
-      buttonIndex => {});
+      buttonIndex => {
+        switch(buttonIndex) {
+          case 0:
+            that.downloadPhoto();
+        }
+      });
+  }
+
+  downloadPhoto = () => {
+    // TODO: This only works in iOS.  Android requires an image download then a save
+    CameraRoll.saveToCameraRoll(`${BASE_IMAGE_URL}/${CLOUDINARY_USER_ID}/image/upload/${CLOUDINARY_REMOTE_FOLDER}/${this.props.cf}`);
   }
 
   getCloudinaryRequestUri(height, width) {
